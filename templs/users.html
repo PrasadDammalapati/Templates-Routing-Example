@@ -1,0 +1,71 @@
+﻿<h2>Users List</h2>
+<div class="container">
+    <div class="col-md-5">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td>
+                    <input type="text" name="id" ng-model="namesearch" id="txtsearch" required placeholder="search by Id or Name"/>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-hover" ng-init="init()">
+            <thead>
+                <tr>
+                    <td>Id
+                    </td>
+                    <td>Name
+                    </td>
+                    <td>
+                        Delete
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in AllUsers | filter:namesearch">
+                    <td>{{user.id}}
+                    </td>
+                    <td><a>
+                        <edit-in-place value="user.Name"></edit-in-place></a>
+                        <!--<a href="#details/{{user.id}}/{{user.Name}}">{{user.Name}}</a>-->
+                    </td>
+                    <td>
+                        <button type="button" class="close pull-right" aria-hidden="true" ng-click="deleteUser(user)">&times;</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5">
+        <form name="myform" ng-submit="SaveData()">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td>Id
+                    </td>
+                    <td>
+                        <input type="text" ng-model="id" id="txtid" placeholder="id"/>
+                        <!--<span style="color: red" ng-show="myform.id.$invalid">
+                            <span style="color: red" ng-show="myform.id.$error.required">Please Enter Id</span>
+                        </span>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name
+                    </td>
+                    <td>
+                        <input type="text" id="txtName" ng-model="name" placeholder="name"/>
+                        <!--<span style="color: red" ng-show="myform.name.$invalid">
+                            <span style="color: red" ng-show="myform.name.$error.required">Please Enter Name</span>
+                        </span>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Save" onclick="return validatecntrls()" ng-enter/>
+                        <!--ng-disabled="myform.id.$invalid || myform.name.$invalid"-->
+                    </td>
+                </tr>
+            </table>
+            
+        </form>
+    </div>
+</div>
